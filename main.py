@@ -11,7 +11,9 @@ video = cv2.VideoCapture('video.mp4')
 while True:
     check, img = video.read()
     imgBN = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    # más info en https://docs.opencv.org/4.x/d7/d4d/tutorial_py_thresholding.html
     imgTH = cv2.adaptiveThreshold(imgBN, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 25, 16)
+    # más info en https://theailearner.com/tag/cv2-medianblur/
     imgMedian = cv2.medianBlur(imgTH, 5)
     kernel = np.ones((5,5), np.int8)
     imgDil = cv2.dilate(imgMedian, kernel)
